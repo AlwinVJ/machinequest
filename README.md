@@ -469,4 +469,4 @@ The tutorial's course listing identifies the instructor as Rathan Kumar and desc
 
 Official course reference:
 
-https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/
+[https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/](https://youtu.be/1-1ePcEDcqI)
