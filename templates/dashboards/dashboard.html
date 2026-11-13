@@ -2,32 +2,96 @@
 
 {% block content %}
 
-<div class="container-fluid p-0 mt-4">
+<div class="container-fluid p-0 mt-3">
     <div class="row">
         <!-- Dashboard Sidebar -->
         {% include 'dashboards/sidebar.html' %}
 
         <!-- Main Panel Content -->
         <div class="col-lg-9 col-md-8 col-12">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="font-weight-bold mb-0" style="font-size: 1.75rem;">Dashboard Overview</h2>
-                <span class="text-muted" style="font-size: 0.9rem;">Logged in as: <strong>{{ user }}</strong></span>
+            <!-- Header with Quick Action -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2" style="border-bottom: 1px solid var(--mq-border);">
+                <div class="mb-2 mb-md-0">
+                    <h2 class="font-weight-bold mb-1" style="font-size: 1.75rem;">Dashboard</h2>
+                    <p class="text-muted mb-0" style="font-size: 0.88rem;">Manage your published articles, topics, and author profile.</p>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{% url 'add_post' %}" class="mq-btn-crimson">
+                        <i class="fa fa-plus mr-1"></i> Create Article
+                    </a>
+                </div>
             </div>
-            
+
+            <!-- Logged In User Info Banner -->
+            <div class="mq-sidebar-card py-3 px-4 mb-4 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <span class="mq-avatar-circle mr-3" style="width: 38px; height: 38px; font-size: 1rem;">
+                        {{ user.username|make_list|first|upper }}
+                    </span>
+                    <div>
+                        <div class="font-weight-bold" style="color: var(--mq-text-primary);">{{ user.username }}</div>
+                        <div class="text-muted" style="font-size: 0.8rem;">{{ user.email|default:"Authenticated Contributor" }}</div>
+                    </div>
+                </div>
+                <span class="badge badge-success px-3 py-1">Active Session</span>
+            </div>
+
+            <!-- Statistics Grid -->
             <div class="row">
-                <!-- Statistics Card: Categories -->
+                <!-- Stat: Categories -->
                 <div class="col-md-6 col-12 mb-3">
-                    <div class="hallway-dashboard-card text-center">
-                        <h3 class="hallway-dashboard-card-title">All Categories</h3>
-                        <p class="hallway-dashboard-card-val">{{ category_count }}</p>
+                    <div class="mq-stat-card">
+                        <div class="mq-stat-icon">
+                            <i class="fa fa-folder-open-o"></i>
+                        </div>
+                        <div>
+                            <div class="mq-stat-label">Total Categories</div>
+                            <h3 class="mq-stat-value">{{ category_count }}</h3>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Statistics Card: Posts -->
+                <!-- Stat: Posts -->
                 <div class="col-md-6 col-12 mb-3">
-                    <div class="hallway-dashboard-card text-center">
-                        <h3 class="hallway-dashboard-card-title">All Posts</h3>
-                        <p class="hallway-dashboard-card-val">{{ blogs_count }}</p>
+                    <div class="mq-stat-card">
+                        <div class="mq-stat-icon">
+                            <i class="fa fa-file-text-o"></i>
+                        </div>
+                        <div>
+                            <div class="mq-stat-label">Total Articles</div>
+                            <h3 class="mq-stat-value">{{ blogs_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links Panel -->
+            <div class="row mt-2">
+                <div class="col-md-6 col-12 mb-3">
+                    <div class="mq-sidebar-card h-100">
+                        <h4 class="mq-sidebar-title" style="font-size: 1rem;">
+                            <span class="mq-accent-bar" style="height: 14px;"></span> Manage Categories
+                        </h4>
+                        <p class="mq-sidebar-text" style="font-size: 0.85rem;">
+                            Create and curate research topics such as Computer Vision, NLP, and Deep Learning.
+                        </p>
+                        <a href="{% url 'categories' %}" class="mq-btn-dark py-2 px-3" style="font-size: 0.825rem !important;">
+                            View Categories <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-12 mb-3">
+                    <div class="mq-sidebar-card h-100">
+                        <h4 class="mq-sidebar-title" style="font-size: 1rem;">
+                            <span class="mq-accent-bar" style="height: 14px;"></span> Manage Articles
+                        </h4>
+                        <p class="mq-sidebar-text" style="font-size: 0.85rem;">
+                            Edit, review drafts, and manage technical writeups across all model domains.
+                        </p>
+                        <a href="{% url 'posts' %}" class="mq-btn-dark py-2 px-3" style="font-size: 0.825rem !important;">
+                            View Posts <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>

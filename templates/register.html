@@ -3,25 +3,58 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="hallway-auth-container" style="max-width: 600px;">
-    <h3 class="hallway-auth-title">Create an Account</h3>
-    
-    <form action="{% url 'register' %}" method="POST">
-        {% csrf_token %}
-        
-        <div class="mb-3">
-            {{ form|crispy }}
+<div class="mq-auth-wrap">
+    <div class="row w-100 justify-content-center align-items-center" style="max-width: 980px;">
+        <!-- Left Hero / Info Column -->
+        <div class="col-lg-5 col-12 mb-4 mb-lg-0 pr-lg-4 text-center text-lg-left">
+            <div class="mb-3">
+                <span class="mq-logo-badge" style="font-size: 1.1rem; padding: 4px 10px;">MQ</span>
+                <span class="mq-logo-text" style="font-size: 1.6rem; vertical-align: middle;">MachineQuest</span>
+            </div>
+            <h2 class="font-weight-bold" style="font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.2; margin-bottom: 16px;">
+                Join <span class="mq-text-accent">MachineQuest</span>
+            </h2>
+            <p class="text-muted" style="font-size: 1.05rem; line-height: 1.6;">
+                Publish ideas, experiments, and technical breakthroughs. Connect with minds shaping the intelligence of tomorrow.
+            </p>
+
+            <div class="d-none d-lg-block mt-4" style="max-width: 280px; opacity: 0.7;">
+                <svg viewBox="0 0 320 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0 50 Q 160 10 320 50" stroke="#272E3A" stroke-width="1.5" />
+                    <path d="M 40 55 Q 160 25 280 55" stroke="#D62839" stroke-width="1.5" opacity="0.6" />
+                    <circle cx="160" cy="25" r="3" fill="#FF5B6D" />
+                </svg>
+            </div>
         </div>
-        
-        <div class="text-center mt-4 mb-2">
-            <button type="submit" class="hallway-btn-gold px-5 py-2 d-inline-flex justify-content-center align-items-center w-100" style="font-size: 1rem !important;">
-                Register
-            </button>
+
+        <!-- Right Form Card Column -->
+        <div class="col-lg-7 col-12 d-flex justify-content-center justify-content-lg-end">
+            <div class="mq-auth-card" style="max-width: 560px;">
+                <h3 class="mq-auth-title">Create an Account</h3>
+                <p class="mq-auth-subtitle">Become a contributor to the MachineQuest platform</p>
+
+                <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        {{ form|crispy }}
+                    </div>
+
+                    <div class="mt-4 mb-3">
+                        <button type="submit" class="mq-btn-crimson w-100 py-2" style="font-size: 1rem !important;">
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-3 pt-3" style="border-top: 1px solid var(--mq-border);">
+                    <p class="mb-0 text-muted" style="font-size: 0.85rem;">
+                        Already have an account? 
+                        <a href="{% url 'login' %}" style="color: var(--mq-accent); font-weight: 600;">Login here</a>
+                    </p>
+                </div>
+            </div>
         </div>
-    </form>
-    
-    <div class="text-center mt-3">
-        <p class="mb-0 text-muted" style="font-size: 0.85rem;">Already have an account? <a href="{% url 'login' %}" class="font-weight-bold" style="color: var(--accent-gold);">Login here</a></p>
     </div>
 </div>
 

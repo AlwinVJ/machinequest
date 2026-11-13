@@ -1,27 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags static %}
 
-<div class="hallway-auth-container">
-    <h3 class="hallway-auth-title">Login to The Hallway</h3>
-    
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        
-        <div class="mb-3">
-            {{ form|crispy }}
+<div class="mq-auth-wrap">
+    <div class="row w-100 justify-content-center align-items-center" style="max-width: 1020px;">
+        <!-- Left Hero / Welcome Column -->
+        <div class="col-lg-6 col-12 mb-4 mb-lg-0 pr-lg-4 text-center text-lg-left">
+            <div class="mb-3">
+                <span class="mq-logo-badge" style="font-size: 1.1rem; padding: 4px 10px;">MQ</span>
+                <span class="mq-logo-text" style="font-size: 1.6rem; vertical-align: middle;">MachineQuest</span>
+            </div>
+            <h2 class="font-weight-bold" style="font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.2; margin-bottom: 16px;">
+                Welcome to <span class="mq-text-accent">MachineQuest</span>
+            </h2>
+            <p class="text-muted" style="font-size: 1.05rem; line-height: 1.6; max-width: 440px;">
+                Your journey into the world of intelligent technology, machine learning systems, and computational insight starts here.
+            </p>
+
+            <!-- VisionQuest Horizon Artwork -->
+            <div class="mq-login-art-wrapper mt-4 d-none d-md-block">
+                <img src="{% static 'images/machinequest-login-hero.png' %}" alt="MachineQuest — Portal Horizon" class="mq-login-art-img">
+                <div class="mq-login-art-blend"></div>
+            </div>
         </div>
-        
-        <div class="text-center mt-4 mb-2">
-            <button type="submit" class="hallway-btn-gold px-5 py-2 d-inline-flex justify-content-center align-items-center w-100" style="font-size: 1rem !important;">
-                Log In
-            </button>
+
+        <!-- Right Form Card Column -->
+        <div class="col-lg-6 col-12 d-flex justify-content-center justify-content-lg-end">
+            <div class="mq-auth-card">
+                <h3 class="mq-auth-title">Login</h3>
+                <p class="mq-auth-subtitle">Continue your technical journey</p>
+
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        {{ form|crispy }}
+                    </div>
+
+                    <div class="mt-4 mb-3">
+                        <button type="submit" class="mq-btn-crimson w-100 py-2" style="font-size: 1rem !important;">
+                            Log In
+                        </button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-3 pt-3" style="border-top: 1px solid var(--mq-border);">
+                    <p class="mb-0 text-muted" style="font-size: 0.85rem;">
+                        Don't have an account? 
+                        <a href="{% url 'register' %}" style="color: var(--mq-accent); font-weight: 600;">Register here</a>
+                    </p>
+                </div>
+            </div>
         </div>
-    </form>
-    
-    <div class="text-center mt-3">
-        <p class="mb-0 text-muted" style="font-size: 0.85rem;">Don't have an account? <a href="{% url 'register' %}" class="font-weight-bold" style="color: var(--accent-gold);">Register here</a></p>
     </div>
 </div>
 

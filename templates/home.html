@@ -1,182 +1,245 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<!-- Hero & Sidebar Section -->
-<div class="row">
-    <!-- Featured Story Centerpiece -->
-    <div class="col-lg-8 col-12">
+<!-- Hero Section (VisionQuest Inspired) -->
+<section class="mq-hero">
+    <div class="row align-items-center">
+        <!-- Hero Content Left -->
+        <div class="col-lg-6 col-12 mq-hero-content">
+            <div class="mq-hero-kicker">Explore &bull; Learn &bull; Build</div>
+            <h1 class="mq-hero-title">
+                Explore the Intelligence Behind <span class="mq-text-accent">Tomorrow.</span>
+            </h1>
+            <p class="mq-hero-desc">
+                Discover ideas, experiments, and insights across Artificial Intelligence, Machine Learning, and Data Science.
+            </p>
+            <div class="mq-hero-actions">
+                <a href="#articles" class="mq-btn-crimson">
+                    Explore Articles <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+                <a href="{% if user.is_authenticated %}{% url 'add_post' %}{% else %}{% url 'login' %}?next={% url 'add_post' %}{% endif %}" class="mq-btn-dark">
+                    <i class="fa fa-pencil mr-1"></i> Start Writing
+                </a>
+            </div>
+        </div>
+
+        <!-- VisionQuest Futuristic Atmospheric Artwork Right -->
+        <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+            <div class="mq-hero-artwork-wrapper">
+                <img src="{% static 'images/machinequest-home-hero.png' %}" alt="MachineQuest — Explore the Intelligence Behind Tomorrow" class="mq-hero-artwork-img">
+                <div class="mq-hero-artwork-blend"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Articles Section -->
+<section class="mb-5" id="articles">
+    <div class="mq-section-header">
+        <h2 class="mq-section-title">
+            <span class="mq-accent-bar"></span> Featured Articles
+        </h2>
+        <a href="#recent-articles" class="mq-view-all">
+            View all <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="row">
         {% for feature_blog in featured_blogs %}
-            {% if forloop.first %}
-            <div class="hallway-hero">
-                <span class="hallway-hero-label">Featured Story</span>
-                <h1 class="hallway-hero-title">{{ feature_blog.title }}</h1>
-                <p class="hallway-hero-description">{{ feature_blog.short_description|truncatewords:40 }}</p>
-                <div class="mb-4">
-                    <a href="{% url 'blogs' feature_blog.slug %}" class="hallway-btn-gold">Continue reading <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-                
-                <!-- Display featured image only if available -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4 d-flex">
+            <article class="mq-card">
+                <!-- Card Image -->
                 {% if feature_blog.featured_image %}
-                <div class="hallway-hero-image-wrapper">
-                    <img src="{{ feature_blog.featured_image.url }}" class="hallway-hero-img" alt="{{ feature_blog.title }}">
+                <div class="mq-card-img-wrapper">
+                    <a href="{% url 'blogs' feature_blog.slug %}">
+                        <img src="{{ feature_blog.featured_image.url }}" class="mq-card-img" alt="{{ feature_blog.title }}">
+                    </a>
                 </div>
                 {% endif %}
-            </div>
-            {% endif %}
-        {% empty %}
-            <div class="hallway-hero text-center py-5">
-                <h3 class="text-muted">No featured stories available.</h3>
-            </div>
-        {% endfor %}
-    </div>
 
-    <!-- Sidebar Section -->
-    <div class="col-lg-4 col-12">
-        <!-- About Section -->
-        {% if about %}
-        <div class="hallway-sidebar-card">
-            <h4 class="hallway-sidebar-title">{{ about.about_heading|default:"About Us" }}</h4>
-            <p class="hallway-sidebar-text mb-0">{{ about.about_description }}</p>
-        </div>
-        {% endif %}
-
-        <!-- Follow Us Section (Dynamic Social Media Links) -->
-        {% if social_medias %}
-        <div class="hallway-sidebar-card">
-            <h4 class="hallway-sidebar-title">Follow Us</h4>
-            <ul class="hallway-social-icons">
-                {% for media in social_medias %}
-                <li>
-                    <a href="{{ media.link }}" target="_blank" class="hallway-social-link" title="{{ media.social_media }}" aria-label="{{ media.social_media }}">
-                        {% if 'github' in media.social_media|lower %}
-                        <i class="fa fa-github"></i>
-                        {% elif 'twitter' in media.social_media|lower or 'x' in media.social_media|lower %}
-                        <i class="fa fa-twitter"></i>
-                        {% elif 'linkedin' in media.social_media|lower %}
-                        <i class="fa fa-linkedin"></i>
-                        {% elif 'facebook' in media.social_media|lower %}
-                        <i class="fa fa-facebook"></i>
-                        {% elif 'instagram' in media.social_media|lower %}
-                        <i class="fa fa-instagram"></i>
-                        {% elif 'rss' in media.social_media|lower %}
-                        <i class="fa fa-rss"></i>
-                        {% else %}
-                        <i class="fa fa-link"></i>
-                        {% endif %}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-
-        <!-- Popular Topics Section (Dynamic Categories) -->
-        {% if categories %}
-        <div class="hallway-sidebar-card">
-            <h4 class="hallway-sidebar-title">Popular Topics</h4>
-            <ul class="hallway-sidebar-list">
-                {% for cat in categories %}
-                <li>
-                    <a href="{% url 'posts_by_category' cat.id %}">
-                        <i class="fa fa-folder-o mr-2 text-muted"></i> {{ cat.category_name }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-    </div>
-</div>
-
-<!-- Featured Blogs Grid -->
-<div class="mt-4 mb-5">
-    <div class="hallway-section-header">
-        <h2 class="hallway-section-title">Featured Blogs</h2>
-    </div>
-    
-    <div class="row">
-        {% for feature_blog in featured_blogs %}
-            {% if not forloop.first %}
-            <div class="col-md-4 col-12 mb-4 d-flex">
-                <div class="hallway-card">
-                    <!-- Card image if available -->
-                    {% if feature_blog.featured_image %}
-                    <div class="hallway-card-img-wrapper">
-                        <img src="{{ feature_blog.featured_image.url }}" class="hallway-card-img" alt="{{ feature_blog.title }}">
+                <!-- Card Body -->
+                <div class="mq-card-body">
+                    <div class="mq-card-tags">
+                        <span class="mq-tag-pill mq-tag-pill-accent">{{ feature_blog.category.category_name }}</span>
+                        <span class="mq-tag-pill">AI &bull; Research</span>
                     </div>
-                    {% endif %}
-                    <div class="hallway-card-body">
-                        <span class="hallway-card-category">{{ feature_blog.category.category_name }}</span>
-                        <h3 class="hallway-card-title">
-                            <a href="{% url 'blogs' feature_blog.slug %}">{{ feature_blog.title }}</a>
-                        </h3>
-                        <div class="hallway-card-meta">
-                            <span>{{ feature_blog.updated_at|timesince }} ago</span>
-                            &bull;
-                            <span>{{ feature_blog.author }}</span>
-                        </div>
-                        <p class="hallway-card-text">{{ feature_blog.short_description|truncatewords:20 }}</p>
-                        <div>
-                            <a href="{% url 'blogs' feature_blog.slug %}" class="hallway-btn-text">Read article <i class="fa fa-arrow-right"></i></a>
-                        </div>
+
+                    <h3 class="mq-card-title">
+                        <a href="{% url 'blogs' feature_blog.slug %}">{{ feature_blog.title }}</a>
+                    </h3>
+
+                    <p class="mq-card-desc">
+                        {{ feature_blog.short_description|truncatewords:20 }}
+                    </p>
+
+                    <div class="mq-card-meta">
+                        <span class="mq-author-avatar">{{ feature_blog.author.username|make_list|first|upper }}</span>
+                        <span>{{ feature_blog.author }}</span>
+                        &bull;
+                        <span>{{ feature_blog.updated_at|timesince }} ago</span>
                     </div>
                 </div>
-            </div>
-            {% endif %}
+            </article>
+        </div>
         {% empty %}
-            <div class="col-12 text-center py-4">
-                <p class="text-muted">No additional featured blogs available.</p>
-            </div>
+        <div class="col-12 text-center py-4">
+            <p class="text-muted">No featured articles available yet.</p>
+        </div>
         {% endfor %}
     </div>
-</div>
+</section>
 
-<!-- Recent Articles Section -->
-<div class="mt-4 mb-5">
-    <div class="hallway-section-header">
-        <h2 class="hallway-section-title">Recent Articles</h2>
-    </div>
-    
+<!-- Recent Articles & Sidebar Section -->
+<section class="mb-5" id="recent-articles">
     <div class="row">
-        <!-- Main Feed -->
+        <!-- Main Feed: Recent Articles -->
         <div class="col-lg-8 col-12">
+            <div class="mq-section-header">
+                <h2 class="mq-section-title">
+                    <span class="mq-accent-bar"></span> Recent Articles
+                </h2>
+            </div>
+
             {% for not_featured_blog in not_featured_blogs %}
-            <div class="hallway-row-card">
-                <!-- Row image if available -->
+            <article class="mq-row-card">
                 {% if not_featured_blog.featured_image %}
-                <div class="hallway-row-card-img-wrapper d-none d-sm-block">
-                    <img src="{{ not_featured_blog.featured_image.url }}" class="hallway-row-card-img" alt="{{ not_featured_blog.title }}">
+                <div class="mq-row-card-img-wrapper d-none d-sm-block">
+                    <a href="{% url 'blogs' not_featured_blog.slug %}">
+                        <img src="{{ not_featured_blog.featured_image.url }}" class="mq-row-card-img" alt="{{ not_featured_blog.title }}">
+                    </a>
                 </div>
                 {% endif %}
-                <div class="hallway-row-card-body">
-                    <div class="hallway-row-card-meta">
-                        <span class="category">{{ not_featured_blog.category.category_name }}</span>
-                        &bull;
-                        <span>{{ not_featured_blog.updated_at|timesince }} ago</span>
-                        &bull;
-                        <span>{{ not_featured_blog.author }}</span>
+
+                <div class="mq-row-card-body">
+                    <div class="mq-card-tags mb-1">
+                        <span class="mq-tag-pill mq-tag-pill-accent">{{ not_featured_blog.category.category_name }}</span>
                     </div>
-                    <h3 class="hallway-row-card-title">
+
+                    <h3 class="mq-row-card-title">
                         <a href="{% url 'blogs' not_featured_blog.slug %}">{{ not_featured_blog.title }}</a>
                     </h3>
-                    <p class="hallway-row-card-text">{{ not_featured_blog.short_description|truncatewords:25 }}</p>
-                    <div>
-                        <a href="{% url 'blogs' not_featured_blog.slug %}" class="hallway-btn-text">Read article <i class="fa fa-arrow-right"></i></a>
+
+                    <p class="mq-row-card-desc">
+                        {{ not_featured_blog.short_description|truncatewords:25 }}
+                    </p>
+
+                    <div class="mq-row-card-footer">
+                        <div class="mq-card-meta border-0 pt-0 mt-0">
+                            <span class="mq-author-avatar">{{ not_featured_blog.author.username|make_list|first|upper }}</span>
+                            <span>{{ not_featured_blog.author }}</span>
+                            &bull;
+                            <span>{{ not_featured_blog.updated_at|timesince }} ago</span>
+                        </div>
+                        <a href="{% url 'blogs' not_featured_blog.slug %}" class="mq-read-link">
+                            Read article <i class="fa fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
+            </article>
             {% empty %}
-            <div class="hallway-row-card p-4 justify-content-center">
+            <div class="mq-sidebar-card text-center py-5">
                 <p class="text-muted mb-0">No recent articles found.</p>
             </div>
             {% endfor %}
         </div>
-        
-        <!-- Right side is empty for this row as newsletter box is removed, leaving clean layout -->
-        <div class="col-lg-4 col-12 d-none d-lg-block">
+
+        <!-- Right Column: Sidebar -->
+        <div class="col-lg-4 col-12 mt-4 mt-lg-0">
+            <!-- About MachineQuest Card -->
+            <div class="mq-sidebar-card" id="about">
+                <h4 class="mq-sidebar-title">
+                    About <span class="mq-text-accent">MachineQuest</span>
+                </h4>
+                <p class="mq-sidebar-text">
+                    {{ about.about_description|default:"MachineQuest is a knowledge-sharing platform dedicated to exploring the rapidly evolving world of Artificial Intelligence, Machine Learning, and Data Science. From fundamental concepts to practical implementations, MachineQuest brings together ideas that help curious minds understand and build intelligent systems." }}
+                </p>
+
+                <div class="mq-mission-box">
+                    <div class="mq-mission-title">
+                        <span class="mq-accent-bar" style="height: 14px;"></span> Our Mission
+                    </div>
+                    <p class="mq-sidebar-text mb-0" style="font-size: 0.85rem;">
+                        To make AI and Data Science accessible, understandable, and practical for everyone.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Categories / Topics Card -->
+            {% if categories %}
+            <div class="mq-sidebar-card">
+                <h4 class="mq-sidebar-title">
+                    <span class="mq-accent-bar" style="height: 14px;"></span>
+                    Topics
+                </h4>
+            
+                <ul class="mq-sidebar-list">
+                    {% for cat in categories %}
+                    <li>
+                        <a href="{% url 'posts_by_category' cat.id %}">
+                            <i class="fa fa-tag text-muted" style="font-size: 0.8rem;"></i>
+                            {{ cat.category_name }}
+                        </a>
+                        <i class="fa fa-angle-right text-muted" style="font-size: 0.8rem;"></i>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Technical Hashtags Cloud (Focus: AI, ML, Data Science) -->
+            <div class="mq-sidebar-card">
+                <h4 class="mq-sidebar-title">
+                    <span class="mq-accent-bar" style="height: 14px;"></span> Technical Tags
+                </h4>
+                <div class="mq-hashtag-cloud">
+                    <span class="mq-hashtag-pill">#GenerativeAI</span>
+                    <span class="mq-hashtag-pill">#DeepLearning</span>
+                    <span class="mq-hashtag-pill">#LLMs</span>
+                    <span class="mq-hashtag-pill">#AIAgents</span>
+                    <span class="mq-hashtag-pill">#ComputerVision</span>
+                    <span class="mq-hashtag-pill">#NLP</span>
+                    <span class="mq-hashtag-pill">#PyTorch</span>
+                    <span class="mq-hashtag-pill">#Transformers</span>
+                    <span class="mq-hashtag-pill">#MLOps</span>
+                    <span class="mq-hashtag-pill">#DataScience</span>
+                </div>
+            </div>
+
+            <!-- Follow Us (Dynamic Social Media Links) -->
+            {% if social_medias %}
+            <div class="mq-sidebar-card">
+                <h4 class="mq-sidebar-title">
+                    <span class="mq-accent-bar" style="height: 14px;"></span> Follow Us
+                </h4>
+                <ul class="mq-social-icons">
+                    {% for media in social_medias %}
+                    <li>
+                        <a href="{{ media.link }}" target="_blank" class="mq-social-link" title="{{ media.social_media }}" aria-label="{{ media.social_media }}">
+                            {% if 'github' in media.social_media|lower %}
+                            <i class="fa fa-github"></i>
+                            {% elif 'twitter' in media.social_media|lower or 'x' in media.social_media|lower %}
+                            <i class="fa fa-twitter"></i>
+                            {% elif 'linkedin' in media.social_media|lower %}
+                            <i class="fa fa-linkedin"></i>
+                            {% elif 'facebook' in media.social_media|lower %}
+                            <i class="fa fa-facebook"></i>
+                            {% elif 'instagram' in media.social_media|lower %}
+                            <i class="fa fa-instagram"></i>
+                            {% elif 'youtube' in media.social_media|lower %}
+                            <i class="fa fa-youtube-play"></i>
+                            {% else %}
+                            <i class="fa fa-share-alt"></i>
+                            {% endif %}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

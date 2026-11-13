@@ -4,37 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found — The Hallway</title>
+    <title>404 — Neural Route Not Found | MachineQuest</title>
     <!-- Bootstrap 4 dependency -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- Theme & Layout Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- MachineQuest CSS -->
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
-    
-    <!-- Theme detection to avoid style flash on load -->
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else {
-                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
-            }
-        })();
-    </script>
 </head>
-<body>
-    <div class="hallway-404-container">
-        <div class="hallway-404-content">
-            <h1 class="hallway-404-title">404</h1>
-            <h2 class="hallway-404-subtitle">Page not found.</h2>
-            <p class="text-muted mb-4">
-                The page you're looking for doesn't exist.
+<body style="background-color: var(--mq-bg) !important;">
+    <div class="mq-404-container">
+        <div class="mq-404-content">
+            <div class="mb-3">
+                <span class="mq-logo-badge" style="font-size: 1rem; padding: 4px 10px;">MQ</span>
+                <span class="mq-logo-text" style="font-size: 1.4rem; vertical-align: middle;">MachineQuest</span>
+            </div>
+            
+            <div class="mq-404-code">404</div>
+            <h2 class="mq-404-subtitle">Neural Route Not Found</h2>
+            <p class="text-muted mb-4" style="font-size: 1rem; line-height: 1.6;">
+                The pathway, article, or resource you are looking for does not exist or has been shifted in the network topology.
             </p>
-            <a href="/" class="hallway-btn-gold">
-                Return Home
+            <a href="{% url 'home' %}" class="mq-btn-crimson px-4 py-2">
+                Return to MachineQuest
             </a>
         </div>
     </div>

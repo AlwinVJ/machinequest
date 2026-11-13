@@ -5,120 +5,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hallway</title>
-    <!-- Bootstrap 4 dependency is retained -->
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans-serif) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome 4.7 for moon/sun/search/dashboard icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Custom theme & layout system -->
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <title>MachineQuest — Explore the Intelligence Behind Tomorrow</title>
     
-    <!-- Theme early initialization script to prevent flash of wrong theme -->
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else {
-                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
-            }
-        })();
-    </script>
+    <!-- Bootstrap 4 dependency -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Space Grotesk (Headings), Inter (Body), JetBrains Mono (Code/Tags) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 4.7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- MachineQuest Dark VisionQuest Design System -->
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
 </head>
 <body>
-    <div class="hallway-container">
-        <!-- Header -->
-        <header class="hallway-header py-4">
+    <!-- Top Navigation Header -->
+    <header class="mq-header">
+        <div class="mq-container py-0">
             <div class="row align-items-center">
-                <!-- Branding -->
-                <div class="col-md-4 col-12 mb-3 mb-md-0">
-                    <div class="hallway-brand-section text-center text-md-left">
-                        <a class="hallway-brand" href="/">The Hallway</a>
-                        <span class="hallway-tagline">Ideas. Stories. Perspectives.</span>
-                    </div>
+                <!-- Brand Logo -->
+                <div class="col-lg-3 col-md-4 col-12 mb-2 mb-md-0 d-flex justify-content-between justify-content-md-start align-items-center">
+                    <a class="mq-logo" href="{% url 'home' %}">
+                        <span class="mq-logo-badge">MQ</span>
+                        <span class="mq-logo-text">MachineQuest</span>
+                    </a>
                 </div>
-                <!-- Search -->
-                <div class="col-md-4 col-12 mb-3 mb-md-0 d-flex justify-content-center">
-                    <form action="{% url 'search' %}" method="GET" class="hallway-search-form">
-                        <div class="hallway-search-group">
-                            <input class="hallway-search-input form-control" type="text" name="keyword" value="{{ keyword|default:'' }}" placeholder="Search articles..." aria-label="Search articles">
-                            <button type="submit" class="hallway-search-btn" aria-label="Search">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
+
+                <!-- Navigation Links (Center) -->
+                <div class="col-lg-4 col-md-4 col-12 mb-2 mb-md-0 d-flex justify-content-center">
+                    <ul class="mq-nav-menu">
+                        <li><a href="{% url 'home' %}" class="mq-nav-item {% if request.path == '/' %}active{% endif %}">Home</a></li>
+                        <li><a href="{% url 'home' %}#articles" class="mq-nav-item">Explore</a></li>
+                        <li><a href="{% url 'home' %}#topics" class="mq-nav-item">Topics</a></li>
+                        <li><a href="{% url 'home' %}#about" class="mq-nav-item">About</a></li>
+                    </ul>
                 </div>
-                <!-- Actions & Toggle -->
-                <div class="col-md-4 col-12 d-flex justify-content-center justify-content-md-end align-items-center">
-                    <div class="d-flex align-items-center" style="gap: 12px;">
-                        {% if not user.is_authenticated %}
-                        <a class="hallway-btn-outline" href="{% url 'login' %}">Login</a>
-                        <a class="hallway-btn-gold" href="{% url 'register' %}">Register</a>
-                        {% else %}
-                        <a class="hallway-btn-outline" href="{% url 'dashboard' %}">Dashboard</a>
-                        <a class="hallway-btn-gold" href="{% url 'logout' %}">Logout</a>
-                        {% endif %}
-                        <button id="theme-toggle" class="hallway-theme-toggle" aria-label="Toggle dark mode">
-                            <i class="fa fa-moon-o"></i>
+
+                <!-- Search & Auth Controls (Right) -->
+                <div class="col-lg-5 col-md-4 col-12 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
+                    <!-- Search Input -->
+                    <form action="{% url 'search' %}" method="GET" class="mq-search-form mr-3">
+                        <input class="mq-search-input" type="text" name="keyword" value="{{ keyword|default:'' }}" placeholder="Search articles..." aria-label="Search articles">
+                        <button type="submit" class="mq-search-btn" aria-label="Search">
+                            <i class="fa fa-search"></i>
                         </button>
+                    </form>
+
+                    <!-- Authentication / User Actions -->
+                    <div class="d-flex align-items-center">
+                        {% if not user.is_authenticated %}
+                        <a class="mq-btn-crimson" href="{% url 'login' %}">Login</a>
+                        <a class="mq-btn-outline ml-2 d-none d-sm-inline-flex" href="{% url 'register' %}">Register</a>
+                        {% else %}
+                        <a class="mq-user-badge mr-2" href="{% url 'dashboard' %}" title="Dashboard">
+                            <span class="mq-avatar-circle">{{ user.username|make_list|first|upper }}</span>
+                            <span class="d-none d-lg-inline">{{ user.username }}</span>
+                        </a>
+                        <a class="mq-btn-outline mr-2 d-none d-sm-inline-flex" href="{% url 'add_post' %}" title="Create Post">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a class="mq-btn-crimson" href="{% url 'logout' %}">Logout</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Category Navigation -->
-        <div class="hallway-nav-bar">
-            <nav class="hallway-nav">
-                <!-- If category_id is not passed, it is the home/all view -->
-                <a class="hallway-nav-link {% if not category and not category_id and request.path == '/' %}active{% endif %}" href="/">All</a>
+    <!-- Main Container -->
+    <main class="mq-container mt-3">
+        <!-- Topics / Categories Bar -->
+        <div class="mq-categories-bar" id="topics">
+            <nav class="mq-categories-nav">
+                <a class="mq-category-pill {% if not category and not category_id and request.path == '/' %}active{% endif %}" href="{% url 'home' %}">All</a>
                 {% for category_item in categories %}
-                <a class="hallway-nav-link {% if category.id == category_item.id or category_id == category_item.id %}active{% endif %}" href="{% url 'posts_by_category' category_item.id %}">{{ category_item.category_name }}</a>
+                <a class="mq-category-pill {% if category.id == category_item.id or category_id == category_item.id %}active{% endif %}" href="{% url 'posts_by_category' category_item.id %}">{{ category_item.category_name }}</a>
                 {% endfor %}
             </nav>
         </div>
 
-        <!-- Main Body Content -->
+        <!-- Main Dynamic Content Block -->
         {% block content %}
         {% endblock %}
 
-        <!-- Editorial Footer -->
-        <footer class="hallway-footer mt-5">
-            <p>The Hallway &copy; 2026. Built with Django by <a href="https://github.com/AlwinVJ" target="_blank">Alwin V J</a></p>
+        <!-- Footer -->
+        <footer class="mq-footer">
+            <p class="mb-1">
+                <strong>MQ MachineQuest</strong> &bull; Explore the Intelligence Behind Tomorrow.
+            </p>
+            <p class="mb-0 text-muted" style="font-size: 0.8rem;">
+                Dedicated technical blogging platform for AI, Machine Learning, Deep Learning and Data Science.
+            </p>
         </footer>
-    </div>
-
-    <!-- Theme Toggle Scripts -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleBtn = document.getElementById('theme-toggle');
-            if (toggleBtn) {
-                const icon = toggleBtn.querySelector('i');
-                
-                // Helper to update toggle button icon
-                function updateIcon(theme) {
-                    if (theme === 'dark') {
-                        icon.className = 'fa fa-sun-o';
-                    } else {
-                        icon.className = 'fa fa-moon-o';
-                    }
-                }
-                
-                // Fetch the current theme from DOM state (which was early initialized)
-                let currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-                updateIcon(currentTheme);
-                
-                // Toggle event handler
-                toggleBtn.addEventListener('click', function() {
-                    let targetTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', targetTheme);
-                    localStorage.setItem('theme', targetTheme);
-                    updateIcon(targetTheme);
-                });
-            }
-        });
-    </script>
+    </main>
 </body>
 </html>
