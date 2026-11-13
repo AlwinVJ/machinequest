@@ -1,118 +1,225 @@
-Django Blog Application — Project & Git Workflow
+# MachineQuest — AI, Machine Learning & Data Science Blogging Platform
 
-A practical Django blog application built by following the tutorial Python Django Basics To Advanced | Complete Blog Application by Rathan Kumar.
+**MachineQuest** is a Django-based blogging platform dedicated to sharing knowledge, ideas, experiments, and practical insights in Artificial Intelligence, Machine Learning, and Data Science.
 
-This repository is being implemented as a learning project, with an additional focus on using Git and GitHub properly throughout the development process.
+Originally developed by following Rathan Kumar's Django blogging application tutorial, this project has evolved into a specialised technical blogging platform with its own branding, visual identity, and content direction.
 
-Tutorial Reference
+The project also serves as a practical learning exercise in Django development and professional Git/GitHub workflows.
 
-Tutorial: Python Django Basics To Advanced | Complete Blog Application
-Instructor: Rathan Kumar
-Platform: Udemy
-Course page: https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/
+---
 
-The tutorial covers Django fundamentals and progressively builds a real-world blog application with authentication, authorization, CRUD operations, search, custom dashboards, comments, and deployment.
+## About MachineQuest
 
-YouTube courtesy: The exact YouTube URL for the tutorial used as the source of this project was not present in the supplied transcript, and I have not added an unverified URL. If the tutorial has a corresponding YouTube video, add its verified URL here:
+MachineQuest is inspired by the futuristic atmosphere of Marvel's VisionQuest series.
 
-YouTube: PASTE VERIFIED YOUTUBE URL HERE
+The name represents an exploration of intelligence, technology, and the possibilities of intelligent systems.
 
-Project Goals
+The platform is designed to bring together technical articles covering:
 
-This project has two learning objectives:
+- Artificial Intelligence
+- Machine Learning
+- Deep Learning
+- Data Science
+- Data Analytics
+- Computer Vision
+- Natural Language Processing
+- Generative AI
+- Large Language Models (LLMs)
+- AI Agents
+- MLOps
 
-Build a complete Django blog application from scratch.
+**Design Philosophy**
 
-Practice a professional Git/GitHub workflow while developing the application.
+MachineQuest follows a clean, minimal, and modern visual identity.
 
-The Git workflow is intentionally more structured than simply committing directly to main.
+Its interface incorporates:
 
-Technology Stack
+- Dark cinematic backgrounds.
+- Subtle crimson-red accents.
+- Minimalist typography.
+- Carefully selected futuristic visual elements.
+- Clean editorial layouts for technical articles.
 
-Python
+The visual direction takes subtle inspiration from VisionQuest without compromising the simplicity and usability expected from a blogging platform.
 
-Django
+---
 
-SQLite during development
+## Project Inspiration & Tutorial Reference
 
-HTML
+**Tutorial:** Python Django Basics To Advanced | Complete Blog Application
+**Instructor:** Rathan Kumar
+**Platform:** Udemy
 
-CSS
+**Course:**
+[https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/](https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/)
 
-Bootstrap
+**YouTube Reference:**
+[https://youtu.be/1-1ePcEDcqI](https://youtu.be/1-1ePcEDcqI)
 
-JavaScript
+The original tutorial progressively builds a real-world Django blogging application covering authentication, authorization, CRUD operations, search, custom dashboards, comments, and deployment.
 
-Git
+MachineQuest builds upon this foundation with a redesigned frontend and a specialised focus on AI and Data Science content.
 
-GitHub
+---
 
-Main Features
+## Project Goals
 
-The tutorial progressively implements:
+This project has four primary objectives:
 
-Django project setup
+1. Build and understand a complete Django blogging application.
+2. Practise professional Git and GitHub workflows throughout development.
+3. Transform a general-purpose blogging application into a dedicated AI, Machine Learning, and Data Science publication.
+4. Understand how Django's MVT architecture handles dynamic content, authentication, database interactions, and template rendering.
 
-Homepage and templates
+---
 
-Static files
+## Technology Stack
 
-Media files
+| Technology | Purpose                                  |
+| ---------- | ---------------------------------------- |
+| Python     | Backend programming                      |
+| Django     | Web application framework                |
+| SQLite     | Development database                     |
+| HTML5      | Page structure                           |
+| CSS3       | Styling and responsive layouts           |
+| Bootstrap  | Frontend components                      |
+| JavaScript | Client-side interactions                 |
+| Git        | Version control                          |
+| GitHub     | Source code management and collaboration |
 
-Category model
+### Architecture
 
-Blog model
+The application follows Django's traditional **MVT (Model-View-Template)** architecture.
 
-Slug generation
+- **Model:** Handles database structure and data relationships.
+- **View:** Handles HTTP requests, application logic, and database interactions.
+- **Template:** Renders dynamic HTML pages using Django Template Language.
+- **URL Configuration:** Maps incoming requests to the appropriate Django views.
 
-Django Admin customization
+The application does not use Django REST Framework. The existing request-response architecture is retained.
 
-Featured and recent posts
+---
 
-Posts by category
+## Application Features
 
-Custom 404 page
+The original tutorial progressively implements the following functionality.
 
-Template inheritance
+### 1. Django Fundamentals
 
-Context processors
+- Django project setup.
+- Application configuration.
+- Homepage and templates.
+- Static files.
+- Media files.
+- Template inheritance.
+- Context processors.
+- Custom 404 page.
 
-Single blog pages
+### 2. Blog Management
 
-About page
+- Category model.
+- Blog model.
+- Slug generation.
+- Featured and recent posts.
+- Posts by category.
+- Single blog pages.
+- Django Admin customization.
 
-Social links
+### 3. Content Discovery
 
-Search functionality
+- Blog search functionality.
+- Category-based navigation.
+- Dynamic blog listings.
 
-User registration
+### 4. Authentication & Authorization
 
-Login and logout
+- User registration.
+- Login and logout.
+- Authentication and authorization.
+- Groups and permissions.
 
-Authentication and authorization
+### 5. Dashboard & Management
 
-Groups and permissions
+- Editor and manager dashboards.
+- Category CRUD operations.
+- Blog post CRUD operations.
+- User management.
+- Comments.
 
-Editor and manager dashboards
+### 6. Deployment
 
-Category CRUD
+- Application configuration.
+- Static and media file handling.
+- Production deployment.
 
-Blog post CRUD
+---
 
-User management
+## MachineQuest UI & Branding
 
-Comments
+The original application, The Hallway, has been rebranded as MachineQuest.
 
-Deployment
+The redesign focuses on improving the user experience without changing the existing backend functionality.
 
-Git & GitHub Workflow
+### Visual Identity
 
-Branching Strategy
+| Element              | Design                    |
+| -------------------- | ------------------------- |
+| Primary background   | Deep charcoal (#0B0D12)   |
+| Secondary background | Dark slate (#121722)      |
+| Primary accent       | Crimson red (#D62839)     |
+| Primary text         | Off-white (#F4F5F7)       |
+| Secondary text       | Muted grey                |
+| Typography           | Modern, minimal, readable |
 
-main is treated as the stable branch.
+### Homepage Visual
+
+The homepage incorporates a futuristic illustration featuring an abstract neural-network brain, a crimson-lit futuristic city, and a human silhouette overlooking the horizon.
+
+The artwork represents the intersection of human intelligence, Artificial Intelligence, and emerging technologies.
+
+### Login Page Visual
+
+The login page incorporates the original horizon illustration featuring:
+
+- A solitary human silhouette.
+- A massive crimson circular structure.
+- A vertical beam of light.
+- A dark mountainous landscape.
+
+This provides a subtle cinematic atmosphere while maintaining focus on the authentication interface.
+
+### Design Principles
+
+- Minimal and aesthetic UI.
+- Consistent branding across pages.
+- Responsive layouts.
+- Readable technical content.
+- Subtle VisionQuest-inspired elements.
+- No unnecessary animations or complicated interface components.
+
+### Content Direction
+
+MachineQuest is exclusively dedicated to technical content.
+
+Suggested hashtags and topics include:
+
+`#MachineLearning` `#ArtificialIntelligence` `#DeepLearning` `#DataScience` `#ComputerVision` `#NLP` `#GenerativeAI` `#LLMs` `#AIAgents` `#MLOps` `#Python` `#XGBoost`
+
+---
+
+## Git & GitHub Workflow
+
+This project places additional emphasis on understanding and practising a structured Git/GitHub workflow.
+
+The repository follows a feature-branch development strategy rather than committing every change directly to `main`.
+
+### Branching Strategy
+
+`main` is treated as the stable branch.
 
 Major features are developed in dedicated feature branches.
 
+```text
 main
 │
 ├── feature/blog-foundation
@@ -128,345 +235,401 @@ main
 ├── feature/blog-management
 ├── feature/user-management
 ├── feature/comments
-└── feature/deployment
+├── feature/deployment
+└── feature/machinequest-ui-redesign
+```
 
-We do not create a new branch for every tutorial video. A branch represents a coherent feature or subsystem.
+A branch represents a coherent feature or subsystem rather than an individual tutorial video.
 
-Commit Convention
+### Commit Convention
 
-Commits use a Conventional Commits-style format.
+Commits follow a Conventional Commits-style format.
 
 Examples:
 
+```text
 feat: add category model
 feat: configure media files
 feat: add blog model
 feat: implement blog search
 feat: add user registration
+
 fix: handle missing category
+
 refactor: implement template inheritance
+
 chore: upgrade project dependencies
-docs: update deployment instructions
 
-Commit Rule
+docs: update project documentation
 
-A commit should represent a meaningful, working state.
+style: redesign homepage and login page
+```
 
-Avoid commits such as:
+**Commit Rule**
 
-did some stuff
-changes
-update
-final
-test
+Every commit should represent a meaningful and working development milestone.
 
-Prefer:
+Avoid vague commit messages such as:
 
-feat: add category model
+- did some stuff
+- changes
+- update
+- final
+- test
 
-Git Development Roadmap
+Prefer descriptive messages that explain what changed.
 
-Tutorial Area
+---
 
-Branch
+## Git Development Roadmap
 
-Example Commits
+| Tutorial Area            | Branch                           | Example Work                                |
+| ------------------------ | -------------------------------- | ------------------------------------------- |
+| Project setup & homepage | main                             | Initialize Django project                   |
+| Blog foundation          | feature/blog-foundation          | Category, media, blog model                 |
+| Homepage blog content    | feature/blog-display             | Featured and recent posts                   |
+| Category pages           | feature/category-pages           | Category pages and URLs                     |
+| Single blog              | feature/single-blog              | Individual article pages                    |
+| About & social links     | feature/about-social-links       | About page and social links                 |
+| Search                   | feature/search                   | Search functionality                        |
+| Authentication           | feature/authentication           | Registration, login, logout                 |
+| Authorization            | feature/authorization            | Groups and permissions                      |
+| Dashboard                | feature/dashboard                | Editor and manager dashboards               |
+| Category CRUD            | feature/category-crud            | Category management                         |
+| Blog management          | feature/blog-management          | Article CRUD                                |
+| User management          | feature/user-management          | User management                             |
+| Comments                 | feature/comments                 | Comment functionality                       |
+| Deployment               | feature/deployment               | Production configuration                    |
+| UI Redesign              | feature/machinequest-ui-redesign | MachineQuest branding and frontend redesign |
 
-Project setup & homepage
+---
 
-main
+## Standard Git Workflow
 
-chore: initialize Django blog project
+### 1. Start a new feature
 
-Blog foundation
-
-feature/blog-foundation
-
-category, media, blog model, slug, admin
-
-Homepage blog content
-
-feature/blog-display
-
-categories, featured posts, recent posts
-
-Category pages
-
-feature/category-pages
-
-category page, 404, templates, URLs
-
-Single blog
-
-feature/single-blog
-
-single blog page
-
-About & social links
-
-feature/about-social-links
-
-about page, social links
-
-Search
-
-feature/search
-
-search functionality and layout
-
-Authentication
-
-feature/authentication
-
-registration, login, logout
-
-Authorization
-
-feature/authorization
-
-groups and permissions
-
-Dashboard
-
-feature/dashboard
-
-dashboards, sidebar, statistics
-
-Category CRUD
-
-feature/category-crud
-
-create, edit, delete category
-
-Blog management
-
-feature/blog-management
-
-create, edit, delete posts
-
-User management
-
-feature/user-management
-
-add, edit, delete users
-
-Comments
-
-feature/comments
-
-comment model and functionality
-
-Deployment
-
-feature/deployment
-
-production configuration and deployment
-
-Standard Workflow
-
-Before starting a new feature:
-
+```bash
 git switch main
 git pull origin main
 git switch -c feature/<feature-name>
+```
 
-After completing a meaningful unit:
+### 2. Implement and test the feature
 
+Make changes and verify that the application works correctly.
+
+### 3. Commit meaningful changes
+
+```bash
 git status
 git add .
 git commit -m "feat: describe the change"
+```
 
-Push the feature branch:
+### 4. Push the feature branch
 
+```bash
 git push -u origin feature/<feature-name>
+```
 
-When the feature is complete and tested:
+### 5. Merge completed features into main
 
+```bash
 git switch main
 git pull origin main
 git merge --no-ff feature/<feature-name>
 git push origin main
+```
 
-The feature branch can then be removed:
+### 6. Remove the completed feature branch
 
+```bash
 git branch -d feature/<feature-name>
 git push origin --delete feature/<feature-name>
+```
 
-Initial Git Setup
+---
 
-The project should have a .gitignore before the first GitHub push.
+## Initial Git Setup
 
-Important files/folders to keep out of the repository include:
+The project should have a `.gitignore` file before pushing code to GitHub.
 
+Important files and directories to exclude:
+
+```gitignore
+# Virtual environments
 .venv/
 venv/
 env/
 
+# Python cache
 __pycache__/
 *.py[cod]
 
+# Django database
 db.sqlite3
 
-media/
-
+# Environment variables
 .env
 
-Do not ignore Django migration files.
+# User-uploaded media
+media/
 
-Migrations are part of the application's source code and should normally be committed:
+# IDE
+.vscode/
 
-blogs/migrations/
+# Operating system
+.DS_Store
+Thumbs.db
+```
 
-Useful Git Commands
+**Important:** Django migration files should not be ignored.
 
-Check current state:
-
-git status
-
-View branches:
-
-git branch
-
-View all branches:
-
-git branch -a
-
-View commit history:
-
-git log --oneline --graph --decorate --all
-
-View unstaged changes:
-
-git diff
-
-View staged changes:
-
-git diff --cached
-
-Check the remote:
-
-git remote -v
-
-Synchronize with GitHub:
-
-git pull origin main
-
-Development Checkpoint Philosophy
-
-The tutorial contains periodic Git Push sections. This project uses those sections as natural milestone boundaries, but commits are made more frequently.
+Migration files are part of the application's source code and should normally be committed.
 
 For example:
 
+```text
+blog/
+└── migrations/
+    ├── __init__.py
+    ├── 0001_initial.py
+    └── 0002_add_new_field.py
+```
+
+---
+
+## Useful Git Commands
+
+### Check repository status
+
+```bash
+git status
+```
+
+### View local branches
+
+```bash
+git branch
+```
+
+### View all branches
+
+```bash
+git branch -a
+```
+
+### View commit history
+
+```bash
+git log --oneline --graph --decorate --all
+```
+
+### View unstaged changes
+
+```bash
+git diff
+```
+
+### View staged changes
+
+```bash
+git diff --cached
+```
+
+### Check remote repository
+
+```bash
+git remote -v
+```
+
+### Synchronize with GitHub
+
+```bash
+git pull origin main
+```
+
+---
+
+## Development Checkpoint Philosophy
+
+The tutorial contains periodic Git Push sections.
+
+This project uses those sections as natural milestone boundaries while maintaining more frequent commits.
+
+Example:
+
+```text
 Create Category Model
-        ↓
+        |
+        v
 Test migrations
-        ↓
+        |
+        v
 COMMIT
-        ↓
+        |
+        v
 Configure Media
-        ↓
+        |
+        v
 Test media upload
-        ↓
+        |
+        v
 COMMIT
-        ↓
+        |
+        v
 Create Blog Model
-        ↓
+        |
+        v
 Test admin
-        ↓
+        |
+        v
 COMMIT
-        ↓
-Feature complete
-        ↓
+        |
+        v
+Feature Complete
+        |
+        v
 PUSH FEATURE BRANCH
-        ↓
+        |
+        v
 MERGE INTO MAIN
+```
 
-This gives the repository a useful development history instead of one large commit per tutorial section.
+This approach creates a meaningful development history instead of one large commit per tutorial section.
 
-Project Status
+---
 
-Progress will be tracked here as the tutorial is implemented.
+## Running the Project Locally
 
-Project initialization
+### 1. Clone the repository
 
-Homepage
+```bash
+git clone <repository-url>
+cd MachineQuest
+```
 
-Static files
+### 2. Create a virtual environment
 
-Git/GitHub setup
+```bash
+python -m venv .venv
+```
 
-Category model
+### 3. Activate the environment
 
-Media configuration
+Windows PowerShell:
 
-Blog model
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-Slug generation
+### 4. Install dependencies
 
-Admin customization
+```bash
+pip install -r requirements.txt
+```
 
-Homepage blog content
+### 5. Apply migrations
 
-Category pages
+```bash
+python manage.py migrate
+```
 
-Single blog page
+### 6. Create a superuser
 
-About page
+```bash
+python manage.py createsuperuser
+```
 
-Social links
+### 7. Start the development server
 
-Search
+```bash
+python manage.py runserver
+```
 
-Registration
+Open the application:
 
-Login/logout
+```text
+http://127.0.0.1:8000/
+```
 
-Authorization
+---
 
-Groups and permissions
+## Learning Notes
 
-Dashboard
+MachineQuest is not intended to be merely a copy of the original tutorial.
 
-Category CRUD
+For every major feature, the objective is to understand:
 
-Blog CRUD
+### Django Concepts
 
-User management
+- Why Django models are required.
+- How the MVT architecture works.
+- How database relationships are represented.
+- How URLs map to views.
+- How Django templates render dynamic content.
+- How authentication and authorization differ.
+- How Django ORM queries retrieve related data.
 
-Comments
+### Git & GitHub Concepts
 
-Deployment
+- How Git tracks changes.
+- Why feature branches are useful.
+- How commits represent development milestones.
+- How branches are merged into `main`.
+- How to resolve merge conflicts.
+- How to maintain a clean repository history.
 
-Learning Notes
+### Frontend Development
 
-This project is not intended to be only a copy of the tutorial.
+- How Django templates interact with views.
+- How static files are managed.
+- How responsive layouts are implemented.
+- How CSS styling can transform an existing application without changing backend functionality.
 
-For each major feature, the goal is to understand:
+---
 
-Why the Django feature is needed.
+## Project Status
 
-How the model/view/template flow works.
+The project has evolved from the original tutorial-based blogging application into MachineQuest.
 
-How database relationships are represented.
+The following areas represent the development roadmap:
 
-How URLs map to views.
+- [x] Django project foundation.
+- [x] Core blogging application.
+- [x] Authentication and authorization.
+- [x] Blog and category management.
+- [x] Search functionality.
+- [x] Dashboard and management functionality.
+- [x] Git/GitHub workflow.
+- [x] MachineQuest rebranding and visual direction.
+- [x] Homepage hero artwork.
+- [x] Login page hero artwork.
+- [x] Complete UI consistency review.
+- [x] Responsive design verification.
+- [x] Final application testing.
+- [x] Deployment.
 
-How authentication and authorization differ.
+---
 
-How Django ORM queries retrieve related data.
+## Source & Credits
 
-How Git commits represent development milestones.
+**Original Tutorial:** Python Django Basics To Advanced | Complete Blog Application
 
-Why a feature belongs on a separate branch.
+**Instructor:** Rathan Kumar
 
-How branches are merged into main.
+**Platform:** Udemy
 
-Source
+**Course:**
+[https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/](https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/)
 
-The project structure and feature roadmap are based on the supplied tutorial transcript.
+**YouTube:**
+[https://youtu.be/1-1ePcEDcqI](https://youtu.be/1-1ePcEDcqI)
 
-The tutorial's course listing identifies the instructor as Rathan Kumar and describes the project as a real-world Django blog application with CRUD, authentication, authorization, dynamic pages, custom dashboards, search, and template functionality.
+MachineQuest builds upon the concepts and application structure introduced in the original tutorial, with additional frontend redesign, branding, and a specialised technical content direction.
 
-Official course reference:
+---
 
-[https://www.udemy.com/course/python-django-for-beginners-build-3-practical-projects/](https://youtu.be/1-1ePcEDcqI)
+**MachineQuest**
+
+*Exploring intelligence. Engineering possibilities.*
