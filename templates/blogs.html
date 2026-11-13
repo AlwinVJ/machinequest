@@ -2,130 +2,174 @@
 
 {% block content %}
 
-<!-- Page content -->
-<div class="container-fluid p-0 mt-4">
-    <div class="row">
-        <!-- Post content column -->
-        <div class="col-lg-8 col-12 mb-4">
-            <article class="hallway-blog-article">
-                <!-- Post header -->
-                <header class="mb-4">
-                    <!-- Post category -->
-                    <span class="hallway-blog-category">{{ single_blog.category }}</span>
-                    <!-- Post title -->
-                    <h1 class="mb-2 font-weight-bold" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2;">{{ single_blog.title }}</h1>
-                    <!-- Post meta content -->
-                    <div class="hallway-blog-meta">
-                        Posted on {{ single_blog.created_at }} by <strong>{{ single_blog.author }}</strong>
-                    </div>
-                </header>
-                
-                <!-- Preview image -->
-                {% if single_blog.featured_image %}
-                <div class="hallway-blog-img-wrapper">
-                    <img class="hallway-blog-img img-fluid" src="{{ single_blog.featured_image.url }}" alt="{{ single_blog.title }}" />
+<div class="row mt-2">
+    <!-- Main Article Reading Column -->
+    <div class="col-lg-8 col-12 mb-4">
+        <article class="mq-article">
+            <!-- Back Link -->
+            <a href="{% url 'home' %}" class="mq-back-link">
+                <i class="fa fa-arrow-left"></i> Back to Articles
+            </a>
+
+            <!-- Article Title -->
+            <h1 class="mq-article-title">{{ single_blog.title }}</h1>
+
+            <!-- Author Metadata Row -->
+            <div class="mq-article-meta-row">
+                <span class="mq-author-avatar" style="width: 28px; height: 28px; font-size: 0.8rem;">
+                    {{ single_blog.author.username|make_list|first|upper }}
+                </span>
+                <div>
+                    <strong style="color: var(--mq-text-primary);">{{ single_blog.author }}</strong>
+                    <span class="mx-1">&bull;</span>
+                    <span>{{ single_blog.created_at }}</span>
                 </div>
-                {% endif %}
-                
-                <!-- Post body content -->
-                <section class="hallway-blog-content mt-4">
-                    <p class="font-weight-bold" style="font-size: 1.2rem; line-height: 1.6; color: var(--text-color);">
-                        {{ single_blog.short_description }}
-                    </p>
-                    <hr style="border-color: var(--border-color); margin: var(--space-lg) 0;">
-                    <div style="line-height: 1.8;">
-                        {{ single_blog.blog_body|linebreaks }}
-                    </div>
-                </section>
-                
-                <!-- Comments section -->
-                <section class="hallway-comment-section">
-                    <h4 class="mb-4 font-weight-bold">{{ comment_count }} Comment{{ comment_count|pluralize }}</h4>
-                    
-                    <div class="mb-4">
-                        {% if comments %}
-                            {% for comment in comments %}
-                                <div class="hallway-comment-card">
-                                    <p class="hallway-comment-text mb-1">{{ comment.comment }}</p>
-                                    <div class="hallway-comment-meta">
-                                        By <strong>{{ comment.user }}</strong> &bull; {{ comment.created_at|timesince }} ago
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <p class="text-muted">No comments yet. Be the first to share your thoughts!</p>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Comment Input Form -->
-                    <div class="mt-4">
-                        {% if user.is_authenticated %}
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="comment-text" class="font-weight-bold" style="font-size: 0.9rem;">Join the conversation</label>
-                                <textarea id="comment-text" name="comment" class="form-control" rows="4" placeholder="Write your comment..." required></textarea>
-                                <button type="submit" class="hallway-btn-gold mt-3">Submit Comment</button>
+            </div>
+
+            <!-- Tags / Category Badges -->
+            <div class="mq-card-tags mb-4">
+                <span class="mq-tag-pill mq-tag-pill-accent">{{ single_blog.category }}</span>
+                <span class="mq-tag-pill">#AI</span>
+                <span class="mq-tag-pill">#DeepLearning</span>
+                <span class="mq-tag-pill">#Python</span>
+            </div>
+
+            <!-- Featured Image (if available) -->
+            {% if single_blog.featured_image %}
+            <div class="mq-article-img-wrapper">
+                <img class="mq-article-img" src="{{ single_blog.featured_image.url }}" alt="{{ single_blog.title }}">
+            </div>
+            {% endif %}
+
+            <!-- Short Description Lead -->
+            {% if single_blog.short_description %}
+            <div class="mq-article-lead">
+                {{ single_blog.short_description }}
+            </div>
+            {% endif %}
+
+            <!-- Article Body Content -->
+            <div class="mq-article-content">
+                {{ single_blog.blog_body|linebreaks }}
+            </div>
+
+            <!-- Comments Section -->
+            <section class="mq-comment-section">
+                <h4 class="mb-4 font-weight-bold" style="font-family: var(--font-heading); font-size: 1.25rem;">
+                    <span class="mq-accent-bar" style="height: 16px;"></span>
+                    {{ comment_count }} Comment{{ comment_count|pluralize }}
+                </h4>
+
+                <!-- Existing Comments List -->
+                <div class="mb-4">
+                    {% if comments %}
+                        {% for comment in comments %}
+                        <div class="mq-comment-item">
+                            <p class="mq-comment-text">{{ comment.comment }}</p>
+                            <div class="mq-comment-meta">
+                                <strong>{{ comment.user }}</strong> &bull; {{ comment.created_at|timesince }} ago
                             </div>
-                        </form>
-                        {% else %}
-                        <div class="p-3 text-center rounded" style="background-color: var(--bg-color); border: 1px solid var(--border-color);">
-                            <p class="mb-0 text-muted">Please <strong><a href="{% url 'login' %}">login</a></strong> to write a comment.</p>
                         </div>
-                        {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted" style="font-size: 0.9rem;">No comments yet. Join the discussion below!</p>
+                    {% endif %}
+                </div>
+
+                <!-- Add Comment Form -->
+                <div>
+                    {% if user.is_authenticated %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="comment-text" class="font-weight-bold">Leave a Comment</label>
+                            <textarea id="comment-text" name="comment" class="form-control" rows="4" placeholder="Share your insights, questions, or analysis..." required></textarea>
+                        </div>
+                        <button type="submit" class="mq-btn-crimson">
+                            <i class="fa fa-comment-o mr-1"></i> Submit Comment
+                        </button>
+                    </form>
+                    {% else %}
+                    <div class="p-3 text-center rounded" style="background-color: var(--mq-bg-secondary); border: 1px solid var(--mq-border);">
+                        <p class="mb-0 text-muted" style="font-size: 0.9rem;">
+                            Please <a href="{% url 'login' %}" style="color: var(--mq-accent); font-weight: 600;">login</a> to join the discussion.
+                        </p>
                     </div>
-                </section>
-            </article>
+                    {% endif %}
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <!-- Right Sidebar Column -->
+    <div class="col-lg-4 col-12">
+        <!-- Topics / Categories Widget -->
+        {% if categories %}
+        <div class="mq-sidebar-card">
+            <h4 class="mq-sidebar-title">
+                <span class="mq-accent-bar" style="height: 14px;"></span> Topics
+            </h4>
+            <ul class="mq-sidebar-list">
+                {% for cat in categories %}
+                <li>
+                    <a href="{% url 'posts_by_category' cat.id %}">
+                        <i class="fa fa-terminal text-muted" style="font-size: 0.8rem;"></i> {{ cat.category_name }}
+                    </a>
+                    <i class="fa fa-angle-right text-muted" style="font-size: 0.8rem;"></i>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-        
-        <!-- Sidebar widgets column -->
-        <div class="col-lg-4 col-12">
-            <!-- Categories Widget -->
-            {% if categories %}
-            <div class="hallway-sidebar-card">
-                <h4 class="hallway-sidebar-title">Categories</h4>
-                <ul class="hallway-sidebar-list">
-                    {% for cat in categories %}
-                    <li>
-                        <a href="{% url 'posts_by_category' cat.id %}">
-                            <i class="fa fa-folder-o mr-2 text-muted"></i> {{ cat.category_name }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+        {% endif %}
+
+        <!-- Technical Hashtags -->
+        <div class="mq-sidebar-card">
+            <h4 class="mq-sidebar-title">
+                <span class="mq-accent-bar" style="height: 14px;"></span> Technical Tags
+            </h4>
+            <div class="mq-hashtag-cloud">
+                <span class="mq-hashtag-pill">#GenerativeAI</span>
+                <span class="mq-hashtag-pill">#DeepLearning</span>
+                <span class="mq-hashtag-pill">#Transformers</span>
+                <span class="mq-hashtag-pill">#LLMs</span>
+                <span class="mq-hashtag-pill">#PyTorch</span>
+                <span class="mq-hashtag-pill">#NLP</span>
+                <span class="mq-hashtag-pill">#ComputerVision</span>
+                <span class="mq-hashtag-pill">#MLOps</span>
             </div>
-            {% endif %}
-            
-            <!-- Follow Us Widget -->
-            {% if social_medias %}
-            <div class="hallway-sidebar-card">
-                <h4 class="hallway-sidebar-title">Follow Us</h4>
-                <ul class="hallway-social-icons">
-                    {% for media in social_medias %}
-                    <li>
-                        <a href="{{ media.link }}" target="_blank" class="hallway-social-link" title="{{ media.social_media }}" aria-label="{{ media.social_media }}">
-                            {% if 'github' in media.social_media|lower %}
-                            <i class="fa fa-github"></i>
-                            {% elif 'twitter' in media.social_media|lower or 'x' in media.social_media|lower %}
-                            <i class="fa fa-twitter"></i>
-                            {% elif 'linkedin' in media.social_media|lower %}
-                            <i class="fa fa-linkedin"></i>
-                            {% elif 'facebook' in media.social_media|lower %}
-                            <i class="fa fa-facebook"></i>
-                            {% elif 'instagram' in media.social_media|lower %}
-                            <i class="fa fa-instagram"></i>
-                            {% elif 'rss' in media.social_media|lower %}
-                            <i class="fa fa-rss"></i>
-                            {% else %}
-                            <i class="fa fa-link"></i>
-                            {% endif %}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
         </div>
+
+        <!-- Follow Us Widget -->
+        {% if social_medias %}
+        <div class="mq-sidebar-card">
+            <h4 class="mq-sidebar-title">
+                <span class="mq-accent-bar" style="height: 14px;"></span> Follow Us
+            </h4>
+            <ul class="mq-social-icons">
+                {% for media in social_medias %}
+                <li>
+                    <a href="{{ media.link }}" target="_blank" class="mq-social-link" title="{{ media.social_media }}" aria-label="{{ media.social_media }}">
+                        {% if 'github' in media.social_media|lower %}
+                        <i class="fa fa-github"></i>
+                        {% elif 'twitter' in media.social_media|lower or 'x' in media.social_media|lower %}
+                        <i class="fa fa-twitter"></i>
+                        {% elif 'linkedin' in media.social_media|lower %}
+                        <i class="fa fa-linkedin"></i>
+                        {% elif 'facebook' in media.social_media|lower %}
+                        <i class="fa fa-facebook"></i>
+                        {% elif 'instagram' in media.social_media|lower %}
+                        <i class="fa fa-instagram"></i>
+                        {% elif 'youtube' in media.social_media|lower %}
+                        <i class="fa fa-youtube-play"></i>
+                        {% else %}
+                        <i class="fa fa-share-alt"></i>
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </div>
 
