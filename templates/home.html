@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -6,7 +7,7 @@
 <section class="mq-hero">
     <div class="row align-items-center">
         <!-- Hero Content Left -->
-        <div class="col-lg-7 col-12" style="position: relative; z-index: 2;">
+        <div class="col-lg-6 col-12 mq-hero-content">
             <div class="mq-hero-kicker">Explore &bull; Learn &bull; Build</div>
             <h1 class="mq-hero-title">
                 Explore the Intelligence Behind <span class="mq-text-accent">Tomorrow.</span>
@@ -24,59 +25,11 @@
             </div>
         </div>
 
-        <!-- VisionQuest Futuristic Atmospheric Visual Right -->
-        <div class="col-lg-5 col-12 d-flex justify-content-center justify-content-lg-end">
-            <div class="mq-hero-visual">
-                <svg viewBox="0 0 460 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                    <defs>
-                        <radialGradient id="portalGlow" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#D62839" stop-opacity="0.45" />
-                            <stop offset="45%" stop-color="#881622" stop-opacity="0.2" />
-                            <stop offset="100%" stop-color="#0B0D12" stop-opacity="0" />
-                        </radialGradient>
-                        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#FF5B6D" />
-                            <stop offset="50%" stop-color="#D62839" />
-                            <stop offset="100%" stop-color="#3A0D14" />
-                        </linearGradient>
-                        <linearGradient id="beamGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-                            <stop offset="0%" stop-color="#FF6B7A" stop-opacity="0.9" />
-                            <stop offset="70%" stop-color="#D62839" stop-opacity="0.3" />
-                            <stop offset="100%" stop-color="#0B0D12" stop-opacity="0" />
-                        </linearGradient>
-                    </defs>
-
-                    <!-- Background Deep Atmospheric Radial Glow -->
-                    <circle cx="230" cy="180" r="170" fill="url(#portalGlow)" />
-
-                    <!-- Outer Subtle Tech Rings -->
-                    <circle cx="230" cy="180" r="145" stroke="#272E3A" stroke-width="1" stroke-dasharray="4 6" opacity="0.6" />
-                    <circle cx="230" cy="180" r="120" stroke="#D62839" stroke-width="1" opacity="0.3" />
-
-                    <!-- Main VisionQuest Portal Arch -->
-                    <ellipse cx="230" cy="180" rx="95" ry="95" stroke="url(#ringGrad)" stroke-width="2.5" filter="drop-shadow(0 0 10px rgba(214, 40, 57, 0.6))" />
-                    <ellipse cx="230" cy="180" rx="90" ry="90" stroke="#FF5B6D" stroke-width="1" opacity="0.4" />
-
-                    <!-- Vertical Synaptic Core Beam -->
-                    <line x1="230" y1="40" x2="230" y2="280" stroke="url(#beamGrad)" stroke-width="2" />
-                    <circle cx="230" cy="180" r="4" fill="#FFFFFF" filter="drop-shadow(0 0 8px #FF5B6D)" />
-
-                    <!-- Horizon Ground Curve -->
-                    <path d="M 40 280 Q 230 250 420 280" stroke="#272E3A" stroke-width="1.5" fill="none" opacity="0.8" />
-                    <path d="M 0 310 Q 230 270 460 310" stroke="#151B27" stroke-width="2" fill="none" opacity="0.9" />
-
-                    <!-- Silhouette of Observer / Synthezoid Explorer -->
-                    <g transform="translate(230, 252)">
-                        <!-- Head -->
-                        <ellipse cx="0" cy="-28" rx="3.5" ry="4.5" fill="#F4F5F7" opacity="0.9" />
-                        <!-- Solar Gem / Mind Gem Red Dot -->
-                        <circle cx="0" cy="-29" r="1" fill="#FF5B6D" />
-                        <!-- Neck & Torso -->
-                        <path d="M -2.5 -23 L 2.5 -23 L 4 -8 L -4 -8 Z" fill="#D1D5DB" opacity="0.85" />
-                        <!-- Lower Body / Cloak Silhouette -->
-                        <path d="M -4.5 -8 L 4.5 -8 L 6 12 L -6 12 Z" fill="#A0A7B4" opacity="0.8" />
-                    </g>
-                </svg>
+        <!-- VisionQuest Futuristic Atmospheric Artwork Right -->
+        <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+            <div class="mq-hero-artwork-wrapper">
+                <img src="{% static 'images/machinequest-home-hero.png' %}" alt="MachineQuest — Explore the Intelligence Behind Tomorrow" class="mq-hero-artwork-img">
+                <div class="mq-hero-artwork-blend"></div>
             </div>
         </div>
     </div>
@@ -217,13 +170,16 @@
             {% if categories %}
             <div class="mq-sidebar-card">
                 <h4 class="mq-sidebar-title">
-                    <span class="mq-accent-bar" style="height: 14px;"></span> Topics
+                    <span class="mq-accent-bar" style="height: 14px;"></span>
+                    Topics
                 </h4>
+            
                 <ul class="mq-sidebar-list">
                     {% for cat in categories %}
                     <li>
                         <a href="{% url 'posts_by_category' cat.id %}">
-                            <i class="fa fa-terminal text-muted" style="font-size: 0.8rem;"></i> {{ cat.category_name }}
+                            <i class="fa fa-tag text-muted" style="font-size: 0.8rem;"></i>
+                            {{ cat.category_name }}
                         </a>
                         <i class="fa fa-angle-right text-muted" style="font-size: 0.8rem;"></i>
                     </li>
