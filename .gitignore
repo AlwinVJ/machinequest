@@ -23,7 +23,7 @@ env/
 ENV/
 env.bak/
 venv.bak/
-blogenv
+blogenv/
 
 # Environment variables / secrets
 .env
